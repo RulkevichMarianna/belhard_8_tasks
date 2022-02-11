@@ -12,3 +12,41 @@ says таким образом, чтобы он возвращал строку 
 - "{кличка} - собака. Говорит ГАВ!" для класса Dog
 - "{кличка} - корова. Говорит МУ!" для класса Cow
 """
+from abc import ABC, abstractmethod
+
+
+class Animal(ABC):
+    name: str
+
+    def __init__(self, name: str):
+        self.name = name
+
+    @abstractmethod
+    def says(self):
+        pass
+
+
+class Cat(Animal):
+
+    def says(self):
+        return f"{self.name} - кошка. Говорит МЯУ!"
+
+
+class Dog(Animal):
+    def says(self):
+        return f"{self.name} - собака. Говорит ГАВ!"
+
+
+class Cow(Animal):
+    def says(self):
+        return f"{self.name} - корова. Говорит МУ!"
+
+
+murka = Cat("Мурка")
+print(murka.says())
+
+bobik = Dog("Бобик")
+print(bobik.says())
+
+burenka = Cow("Буренка")
+print(burenka.says())
