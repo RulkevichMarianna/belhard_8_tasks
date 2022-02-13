@@ -24,19 +24,19 @@ https://www.youtube.com/watch?v=8o7ZKTvZpLc
 class AmericanPerson:
     @staticmethod
     def i_love_science():
-        return f"I love science"
+        return str("I love science")
 
 
 class RussianPerson:
     @staticmethod
     def i_love_science():
-        return f"Я люблю науку"
+        return str("Я люблю науку")
 
 
 class GermanyPerson:
     @staticmethod
     def i_love_science():
-        return f"ich liebe Wissenschaft"
+        return str("ich liebe Wissenschaft")
 
 
 def person_love_science(obj):
