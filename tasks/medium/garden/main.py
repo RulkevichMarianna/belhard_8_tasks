@@ -20,7 +20,6 @@ from gardener import Gardener
 from tomato import Tomato
 from tomato_bush import TomatoBush
 
-
 if __name__ == '__main__':
     tomato_1 = Tomato(1)
     tomato_2 = Tomato(2)
