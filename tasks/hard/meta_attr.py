@@ -11,3 +11,11 @@ TypeError: Man() takes no arguments
 
 Сделать возможным данный механизм с помощью метакласса DynamicInitMeta
 """
+
+
+class DynamicInitMeta(type):
+    def __call__(cls, *args, **kwargs):
+        new_object = type.__call__(cls, *args)
+        for name in kwargs:
+            setattr(new_object, name, kwargs[name])
+        return new_object

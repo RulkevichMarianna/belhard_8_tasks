@@ -17,6 +17,28 @@
 """
 import time
 
-# start_time = time.time()
-# end_time = time.time()
-# difference = e - s
+
+def def_benchmark(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        print(f"Выполняем {func.__name__} с args: {args} и kwargs: {kwargs}")
+        print(f"Время начала: {start_time}")
+        end_time = time.time()
+        result = func(*args, **kwargs)
+        print(f"Выполнено {func.__name__}")
+        print(f"Время окончания: {end_time}")
+        print(f"Всего затрачено времени на выполнение: {end_time - start_time}")
+        return result
+
+    return wrapper
+
+
+def class_benchmark(cls):
+    functions = {
+        name: value for name, value
+        in cls.__dict__.items()
+        if callable(value) and not name.startswith("_")}
+    for name, func in functions.items():
+        func_with_decor = def_benchmark(func)
+        setattr(cls, name, func_with_decor)
+    return cls

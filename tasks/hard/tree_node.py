@@ -11,3 +11,44 @@ left_subtree (keys)  ≤  node (key)  ≤  right_subtree (keys)
 
 https://tproger.ru/translations/binary-search-tree-for-beginners/
 """
+
+
+class Node:
+    parent: "Node"
+    left_child: "Node"
+    right_child: "Node"
+    value: int
+
+    def __init__(self, value: int):
+        self.parent = None
+        self.left_child = None
+        self.right_child = None
+        self.value = value
+
+
+class Tree:
+    root: Node
+
+    def __init__(self, root: Node = None):
+        self.root = root
+
+    def insert(self, node: Node) -> None:
+        if self.root is None:
+            self.root = node
+        else:
+            current_node = self.root
+            while True:
+                if node.value > current_node.value:
+                    if current_node.right_child:
+                        current_node = current_node.right_child
+                    else:
+                        current_node.right_child = node
+                        node.parent = current_node
+                        break
+                else:
+                    if current_node.left_child:
+                        current_node = current_node.left_child
+                    else:
+                        current_node.left_child = node
+                        node.parent = current_node
+                        break
